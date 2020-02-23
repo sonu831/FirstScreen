@@ -108,7 +108,7 @@ const AddUser =()=>{
                     <Select
                     showSearch
                     style={{ width: 200 }}
-                    placeholder="Select a Country"
+                    placeholder="Select a City"
                     optionFilterProp="children"
                     onChange={handleChange}
                     onSearch={onSearch}
