@@ -1,23 +1,24 @@
 /* eslint-disable no-unused-expressions */
-import React,{ useEffect, useState } from 'react';
+import React,{ useEffect } from 'react';
 import { Formik, Form } from 'formik';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import {Select} from 'antd';
+import * as LocationAction from '../../store/actions/LocationAction'
+import * as UserAction from '../../store/actions/UserAction'
 
 const { Option } = Select;
 
-const AddUser =()=>{
+const AddUser =(props)=>{
   
-  const [continentList,setContinentList ] = useState([]);
-  const [countryList,setCountryList] = useState([]);
-  const [cityList,setCityList] = useState([]);
+ const {continentList,countryList,cityList} = props;
 
   const onSearch=(val)=> {
     console.log('search:', val);
   }
   useEffect(()=>{
-     
-  },[])
+     props.getAllContinent();
+  },[props])
 
        return(
         <div>
@@ -57,13 +58,13 @@ const AddUser =()=>{
             return(
                 (
                     <Form>
-                    <label htmlFor="firstName">First Name</label>
+                    <label htmlFor="username">User Name</label>
                     <input
-                      id="firstName"
-                      name="firstName"
+                      id="username"
+                      name="username"
                       type="text"
                       onChange={handleChange}
-                      value={values.firstName}
+                      value={values.username}
                     />
                     {touched.firstName && errors.firstName ? (
                         <div style={{color: "red"}}>{errors.firstName}</div>
@@ -134,6 +135,20 @@ const AddUser =()=>{
        )
    };
 
+   const mapStateToProps = state => ({
+      continentList:state.LocationReducer.continentsList,
+      countryList:state.LocationReducer.countryList,
+      cityList:state.LocationReducer.cityList
+  });
+  
+  const mapDispatchToProps = dispatch => ({
+    getAllContinent: () => dispatch(LocationAction.getAllContinent()),
+    getAllCountry: () => dispatch(LocationAction.getAllCountry()),
+    getAllCities: () => dispatch(LocationAction.getAllCities()),
+    userVisited: filter => dispatch(UserAction.createUser(filter)),
+  });
 
-
-export default AddUser;
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AddUser);
