@@ -13,7 +13,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
       <Switch>
-        <Route path="/addUser" component={AddUser} />
+        <Route default path="/addUser" component={AddUser} />
         <Route path="/userList" component={UserList} />
       </Switch>
       </BrowserRouter>

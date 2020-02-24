@@ -34,7 +34,7 @@ const AddUser = (props) => {
 				}}
 				validate={(values) => {
 					const errors = {};
-					if (_.isNil(values.username)) {
+					if (!values.username.length) {
 						errors.username = 'username is Required';
 					}
 					return errors;
@@ -46,7 +46,6 @@ const AddUser = (props) => {
 						country: values.counties,
 						city: values.cities
 					};
-					
 					// const srtUser = localStorage.getItem('users');
 					// const users = srtUser && JSON.parse(srtUser);
 					// if (srtUser) {
