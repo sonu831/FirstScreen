@@ -5,19 +5,18 @@ export const getAllContinent = () => dispatch =>
 API.getAllContinent()
   .then(res => dispatch({type:GET_ALL_CONTINENT,data:res.data}))
   .catch(error => {
-    debugger;
     throw Error(error);
   });
 
-export const getAllCountry = () => dispatch =>
-API.getAllContinent()
+export const getAllCountry = (continentId) => dispatch =>
+API.getAllCountries(continentId)
   .then(res => dispatch({type:GET_ALL_COUNTRY,data:res.data}))
   .catch(error => {
     throw error;
   });
 
-  export const getAllCities = () => dispatch =>
-API.getAllContinent()
+  export const getAllCities = (continentId) => dispatch =>
+API.getAllCities(continentId)
   .then(res => dispatch({type:GET_ALL_CITY,data:res.data}))
   .catch(error => {
     throw error;

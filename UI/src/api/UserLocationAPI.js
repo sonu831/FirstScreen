@@ -1,9 +1,15 @@
 import axios from 'axios';
 
-export const getAllContinent = token => axios.get(`http://localhost:3000/allContinents`);
+let config = {
+    headers: {
+            "Access-Control-Allow-Origin": true,
+            "Content-Length": '',
+}}
+
+export const getAllContinent = () => axios.get(`http://localhost:3000/allContinents`,config);
 
 
 export const getAllCountries = continentId => axios.get(`http://localhost:3000/allCountries/${continentId}`);
 
 
-export const getAllCities = countryId => axios.get(`http://localhost:3000/allCities/${countryId}`);
+export const getAllCities = continentId => axios.get(`http://localhost:3000/allCities/${continentId}`);
